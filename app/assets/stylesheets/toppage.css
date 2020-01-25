@@ -1,0 +1,27 @@
+.fluid-box {
+  width: 100vw;
+  height: 50vh;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background:url(toppage_image.jpg) center no-repeat;
+  background-size: cover;
+  padding: 40px;
+}
+
+.fluid-box::after {
+  content: '';
+  background-color: rgba(0,0,0,.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.toppage-content {
+  color: white;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+}
