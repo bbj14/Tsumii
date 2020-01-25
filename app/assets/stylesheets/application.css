@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+.fluid-box{
+  width: 100vw;
+  height: 50vh;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background:url(toppage_image.jpg) center no-repeat;
+  background-size: cover;
+  padding: 40px;
+}
