@@ -1,8 +1,9 @@
-.fluid-box.mt-n4.mb-3
-  .toppage-content.container.text-center
-    h1 詰将棋投稿サイト
-    h2 詰将棋を作る。解く。
-    = link_to "ユーザー登録（無料）", signup_path, class: "btn btn-primary"
+- unless logged_in?
+  .fluid-box.mt-n4.mb-3
+    .toppage-content.container.text-center
+      h1 詰将棋投稿サイト
+      h2 詰将棋を作る。解く。
+      = link_to "ユーザー登録（無料）", signup_path, class: "btn btn-primary"
 h3 人気の作品
 h3 手数ごとに探す
 h3 新着作品
