@@ -1,0 +1,32 @@
+h2.text-center.mb-4 作品詳細
+
+.row
+  /プロフィールと盤面
+  .col-md-6
+    == render 'users/user_card', user: @work.user
+    .my-4
+      p.text-center = "#{@work.number_of_moves}手詰"
+      = image_tag @work.image.url, class: "image-fit"
+    p
+      | 作成日時：
+      = @work.created_at
+    p = @work.description
+  /ヒント以降
+  .col-md-6
+    details.border.p-3.mb-4
+      summary.mb-3
+        | ヒントを見る
+      p = @work.hint
+    details.border.p-3
+      summary.mb-3
+        | 解答を見る
+      .row
+        .col-sm-3
+          p 解答
+          /答え（予定）
+          p.mt-3 kotae
+        .col-sm-9
+          p 解説
+          p.mt-3 = @work.explanation
+
+/コメント（予定）

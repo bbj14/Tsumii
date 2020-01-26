@@ -63,3 +63,5 @@ gem 'kaminari'
 gem 'pry-rails'
 
 gem 'slim-rails'
+
+gem 'carrierwave'

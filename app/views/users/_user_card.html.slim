@@ -1,0 +1,7 @@
+.row
+  .col-4
+    - if user.image?
+      = image_tag user.image, size: "100x100", class: "image-fit"
+  .col-8
+    = link_to user.name, user_path(user)
+    = simple_format h user.biography

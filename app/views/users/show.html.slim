@@ -1,2 +1,10 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
+h2.text-center.mb-4 ユーザー詳細
+
+.row
+  .col-md-6.offset-md-3
+    == render 'users/user_card', user: @user
+nav.nav.nav-pills.nav-justified
+  a.nav-item.nav-link.active href="#" Active
+  a.nav-item.nav-link href="#" Much longer nav link
+  a.nav-item.nav-link href="#" Link
+  a.nav-item.nav-link.disabled href="#" tabindex="-1" aria-disabled="true" Disabled

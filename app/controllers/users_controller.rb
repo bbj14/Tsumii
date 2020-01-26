@@ -13,7 +13,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
+    @user.image = 'default_icon1.jpg'
+    
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
       redirect_to @user

@@ -1,0 +1,47 @@
+.text-center
+  h2
+    | 作品新規作成
+.row
+  .col-sm-10.offset-sm-1
+    = form_with(model: @work, local: true) do |f|
+      = render 'layouts/error_messages', model: f.object
+      .row.my-3
+        .col-sm-3
+          = f.label :image
+          = f.label :image, "（必須）"
+        .col-sm-9
+          = f.file_field :image, id: :work_image
+          p = image_tag 'default_icon1.jpg', size: "100x100"
+          - if @work.image?
+            p = image_tag @work.image.url, id: :image_prev, size: "100x100"
+      .row.mb-3
+        .col-sm-3
+          = f.label :title
+        .col-sm-9
+          = f.text_field :title, class: 'form-control'
+      .row.mb-3
+        .col-sm-3
+          = f.label :number_of_moves
+          = f.label :number_of_moves, "（必須）"
+        .col-sm-9
+          .form-inline
+            = f.number_field :number_of_moves, class: 'form-control mr-3'
+            | 手詰
+      
+      .row.mb-3
+        .col-sm-3
+          = f.label :description
+        .col-sm-9
+          = f.text_area :description, class: 'form-control', rows: 5, maxlength: 255
+      .row.mb-3
+        .col-sm-3
+          = f.label :hint
+        .col-sm-9
+          = f.text_area :hint, class: 'form-control', rows: 5, maxlength: 255
+      .row.mb-3
+        .col-sm-3
+          = f.label :explanation
+        .col-sm-9
+          = f.text_area :explanation, class: 'form-control', rows: 5, maxlength: 255
+      .text-center
+        = f.submit '以上の内容で作成する', class: 'btn btn-primary'
