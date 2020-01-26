@@ -4,7 +4,23 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    set_user
+    count(@user)
+  end
+  
+  def followings
+    set_user
+    count(@user)
+  end
+  
+  def followers
+    set_user
+    count(@user)
+  end
+  
+  def likes
+    set_user
+    count(@user)
   end
 
   def new
@@ -35,6 +51,10 @@ class UsersController < ApplicationController
   
   private
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+  
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end

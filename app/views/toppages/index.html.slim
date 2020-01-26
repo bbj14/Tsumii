@@ -5,5 +5,9 @@
       h2 詰将棋を作る。解く。
       = link_to "ユーザー登録（無料）", signup_path, class: "btn btn-primary"
 h3 人気の作品
-h3 手数ごとに探す
-h3 新着作品
+== render 'works/works', works: @works_popular
+h3.mt-4 手数ごとに探す
+= link_to '１手', root_path, class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
+= link_to '３手', root_path, class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
+h3.mt-4 新着作品
+== render 'works/works', works: @works_recent
