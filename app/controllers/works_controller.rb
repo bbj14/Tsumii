@@ -2,7 +2,20 @@ class WorksController < ApplicationController
   def show
     @work = Work.find(params[:id])
   end
-
+  
+  def popular
+    @works = Work.all
+  end
+  
+  def recent
+    @works = Work.all.order(created_at: :desc)
+  end
+  
+  def moves
+    @works = Work.where(number_of_moves: params[:number_of_moves])
+    @moves = params[:number_of_moves]
+  end
+  
   def new
     @work = Work.new
   end

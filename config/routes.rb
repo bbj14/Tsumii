@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     collection do
       get :popular
       get :recent
+      get 'moves/:number_of_moves', to: 'works#moves', as: 'moves'
     end
   end
+  
 end
