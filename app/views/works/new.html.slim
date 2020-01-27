@@ -11,9 +11,7 @@
           = f.label :image, "（必須）"
         .col-sm-9
           = f.file_field :image, id: :work_image
-          p = image_tag 'default_icon1.jpg', size: "100x100"
-          - if @work.image?
-            p = image_tag @work.image.url, id: :image_prev, size: "100x100"
+          p = image_tag (@work.image.url || 'default_icon1.jpg'), id: :work_image_prev, size: "200x200"
       .row.mb-3
         .col-sm-3
           = f.label :title

@@ -41,9 +41,18 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
   
   def update
+    set_user
+    if @user.update(user_params)
+      flash[:success] = "プロフィールを更新しました"
+      redirect_to edit_user_path(@user)
+    else
+      flash[:danger] = "プロフィールは更新されませんでした"
+      render :edit
+    end
   end
   
   def destroy
@@ -56,6 +65,6 @@ class UsersController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :biography)
   end
 end

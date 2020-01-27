@@ -1,2 +1,31 @@
-h1 Users#edit
-p Find me in app/views/users/edit.html.slim
+.text-center
+  h2
+    | プロフィール編集
+.row
+  .col-sm-10.offset-sm-1
+    = form_with(model: @user, local: true) do |f|
+      = render 'layouts/error_messages', model: f.object
+      .row.my-3
+        .col-sm-3
+          = f.label :name
+        .col-sm-9
+          = f.text_field :name, class: 'form-control'
+      .row.my-3
+        .col-sm-3
+          = f.label :image
+        .col-sm-9
+          - if @user.image?
+            = image_tag @user.image.url, id: :user_image_prev, size: "200x200"
+          = f.file_field :image, id: :user_image, class: "ml-4"
+      .row.mb-3
+        .col-sm-3
+          = f.label :email
+        .col-sm-9
+          = f.text_field :email, class: 'form-control'
+      .row.mb-3
+        .col-sm-3
+          = f.label :biography
+        .col-sm-9
+          = f.text_area :biography, class: 'form-control', rows: 5, maxlength: 255
+      .text-center
+        = f.submit '更新', class: 'btn btn-primary'

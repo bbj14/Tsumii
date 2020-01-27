@@ -6,5 +6,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   
+  mount_uploader :image, ImagesUploader
+  
   has_many :works
 end
