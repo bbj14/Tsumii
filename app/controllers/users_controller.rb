@@ -5,16 +5,19 @@ class UsersController < ApplicationController
 
   def show
     set_user
+    #redirect_to mypage_url if @user == curennt_user
     count(@user)
   end
   
   def followings
     set_user
+    @followings = @user.followings.page(params[:page])
     count(@user)
   end
   
   def followers
     set_user
+    @followers = @user.followers.page(params[:page])
     count(@user)
   end
   

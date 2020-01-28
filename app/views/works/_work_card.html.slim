@@ -1,7 +1,7 @@
 = link_to image_tag(work.image.url, class: "image-fit"), work
 .media
   - if work.user.image?
-    = image_tag work.user.image, size: "100x100", class: "image-fit"
+    = image_tag work.user.image.url, size: "100x100", class: "image-fit"
   .media-body
     .mt-3 = link_to work.user.name, user_path(work.user)
     = simple_format h work.description

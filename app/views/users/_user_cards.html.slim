@@ -1,0 +1,5 @@
+.row
+  - users.each do |user|
+    .col-sm-6.col-md-4
+      == render 'user_card', user: user
+    = paginate users

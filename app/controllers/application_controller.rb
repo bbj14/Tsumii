@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
   
   def count(user)
     @count_works = user.works.count
-    #@count_followings = user.works.count
-    #@count_followers = user.works.count
-    #@count_favorites = user.works.count
+    @count_followings = user.followings.count
+    @count_followers = user.followers.count
+    #@count_likes = user.works.count
   end
 end

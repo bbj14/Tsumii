@@ -1,7 +1,8 @@
 .row
   .col-4
     - if user.image?
-      = image_tag user.image, size: "100x100", class: "image-fit"
+      = image_tag user.image.url, size: "100x100", class: "image-fit"
+    = render 'relationships/follow_button', user: user
   .col-8
     = link_to user.name, user_path(user)
     = simple_format h user.biography

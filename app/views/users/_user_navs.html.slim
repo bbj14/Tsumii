@@ -6,11 +6,11 @@ nav.nav.nav-pills.nav-justified.my-4
   li.nav-item.border
     a href="#{followings_user_path(user)}" class="nav-link #{'active' if current_page?(followings_user_path(user))}"
       | フォロー
-      /span.badge.badge-secondary.ml-2 = @count_followings
+      span.badge.badge-secondary.ml-2 = @count_followings
   li.nav-item.border
     a href="#{followers_user_path(user)}" class="nav-link #{'active' if current_page?(followers_user_path(user))}"
       | フォロワー
-      /span.badge.badge-secondary.ml-2 = @count_followers
+      span.badge.badge-secondary.ml-2 = @count_followers
   li.nav-item.border
     a href="#{likes_user_path(user)}" class="nav-link #{'active' if current_page?(likes_user_path(user))}"
       | いいね
