@@ -1,10 +1,11 @@
-div id="follow-btn-#{user.id}"  
-  - unless current_user == user
-    - if current_user.following?(user)
-      = form_with(model: current_user.relationships.find_by(follow_id: user.id), method: :delete) do |f|
-        = hidden_field_tag :follow_id, user.id
-        = f.submit 'フォロー中', class: 'btn btn-sm btn-success'
-    - else
-      = form_with(model: current_user.relationships.build) do |f|
-        = hidden_field_tag :follow_id, user.id
-        = f.submit 'フォローする', class: 'btn btn-sm btn-primary'
+- if current_user  
+  div id="follow-btn-#{user.id}"  
+    - unless current_user == user
+      - if current_user.following?(user)
+        = form_with(model: current_user.relationships.find_by(follow_id: user.id), method: :delete) do |f|
+          = hidden_field_tag :follow_id, user.id
+          = f.submit 'フォロー中', class: 'btn btn-sm btn-success'
+      - else
+        = form_with(model: current_user.relationships.build) do |f|
+          = hidden_field_tag :follow_id, user.id
+          = f.submit 'フォローする', class: 'btn btn-sm btn-primary'

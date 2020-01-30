@@ -1,4 +1,6 @@
 class WorksController < ApplicationController
+  before_action :require_user_logged_in, only: [:timeline, :new, :create, :destroy]
+  
   def show
     @work = Work.find(params[:id])
   end
