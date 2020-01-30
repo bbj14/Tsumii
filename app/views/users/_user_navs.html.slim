@@ -14,4 +14,4 @@ nav.nav.nav-pills.nav-justified.my-4
   li.nav-item.border
     a href="#{likes_user_path(user)}" class="nav-link #{'active' if current_page?(likes_user_path(user))}"
       | いいね
-      /span.badge.badge-secondary.ml-2 = @count_favorites
+      span.badge.badge-secondary.ml-2 = @count_likes

@@ -20,9 +20,12 @@ Rails.application.routes.draw do
       get :popular
       get :recent
       get 'moves/:number_of_moves', to: 'works#moves', as: 'moves', constraints: { number_of_moves: /\d*[13579]+/ }
+    
+      get :timeline
     end
   end
   
   resources :relationships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
   
 end

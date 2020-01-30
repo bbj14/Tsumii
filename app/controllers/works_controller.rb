@@ -4,7 +4,7 @@ class WorksController < ApplicationController
   end
   
   def popular
-    @works = Work.all
+    @works = Work.order_by_likes
   end
   
   def recent
@@ -14,6 +14,10 @@ class WorksController < ApplicationController
   def moves
     @works = Work.where(number_of_moves: params[:number_of_moves])
     @moves = params[:number_of_moves]
+  end
+  
+  def timeline
+    @works = current_user.feed_works.order(created_at: :desc)
   end
   
   def new

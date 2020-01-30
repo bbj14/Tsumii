@@ -1,8 +1,12 @@
 .row
   .col-4
     - if user.image?
-      = image_tag user.image.url, size: "100x100", class: "image-fit"
-    = render 'relationships/follow_button', user: user
+      = image_tag user.image.url, class: "image-fit"
   .col-8
-    = link_to user.name, user_path(user)
-    = simple_format h user.biography
+    .d-flex.justify-content-between
+      .d-inline-block.my-auto
+        = link_to user.name, user_path(user)
+      .d-inline-block
+        = render 'relationships/follow_button', user: user
+    .mt-2 
+      = simple_format h user.biography

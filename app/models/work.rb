@@ -9,4 +9,11 @@ class Work < ApplicationRecord
   validates :explanation, length: { maximum: 255 }
   
   mount_uploader :image, ImagesUploader
+  
+  has_many :likes, dependent: :destroy
+  has_many :users_liked_by, through: :likes, source: :user
+  
+  def self.order_by_likes
+    Work.find(Like.group(:work_id).order('count(work_id) desc').pluck(:work_id))
+  end
 end
