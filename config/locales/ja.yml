@@ -27,6 +27,12 @@ ja:
         description: 作品の説明
         hint: ヒント
         explanation: 答えの解説
+      move:
+        id: ID
+        column: 列
+        row: 行
+        piece: 駒
+        state: 状態
   date:
     abbr_day_names:
     - 日

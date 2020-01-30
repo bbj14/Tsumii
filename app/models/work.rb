@@ -1,5 +1,6 @@
 class Work < ApplicationRecord
   belongs_to :user
+  has_many :moves
   
   validates :title, length: { maximum: 50 }
   validates :image, presence: true
