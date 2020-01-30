@@ -1,0 +1,19 @@
+.modal.fade#requireLoginModal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        h5.modal-title#exampleModalLabel
+          | ユーザー登録すると以下の機能がご利用になれます
+      .modal-body
+        ul
+          li 作品の投稿
+          li 作品へのいいね
+          li 他ユーザーのフォロー
+          li タイムライン（フォロー中のユーザーの作品一覧）
+          li 作品へのコメント
+          li 作品へのチェック機能（解答済・あとで解く）
+        .text-center
+          = link_to "ユーザー登録（無料）", signup_path, class: "btn btn-primary"
+      .modal-footer
+        button type="button" class="btn btn-sm btn-secondary mx-auto" data-dismiss="modal"
+          | 閉じる

@@ -21,7 +21,14 @@
 
 .toppage-content {
   color: white;
-  font-weight: bold;
   position: relative;
   z-index: 1;
+  
+  h1 {
+    font-weight: bold;
+  }
+  
+  a:hover {
+    cursor: pointer;
+  }
 }

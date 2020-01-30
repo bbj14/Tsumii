@@ -1,9 +1,11 @@
 - unless logged_in?
   .fluid-box.mt-n4.mb-3
     .toppage-content.container.text-center
-      h1 詰将棋投稿サイト
-      h2 詰将棋を作る。解く。
-      = link_to "ユーザー登録（無料）", signup_path, class: "btn btn-primary"
+      h1 詰将棋投稿サイト(仮)
+      h3.mt-3 詰将棋を作る。解く。
+      p.my-4 = link_to "ユーザー登録（無料）", signup_path, class: "btn btn-primary"
+      a data-toggle="modal" data-target="#requireLoginModal"
+        u.small ユーザー登録するとできること
 h3 人気の作品
 == render 'works/works', works: @works_popular
 .text-right

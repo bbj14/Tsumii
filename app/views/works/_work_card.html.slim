@@ -3,8 +3,14 @@
   - if work.user.image?
     = image_tag work.user.image.url, size: "100x100", class: "image-fit"
   .media-body
-    .d-inline-block.mt-3
-      = link_to work.user.name, user_path(work.user)
-    .d-inline-block.mt-3.float-right
-      == render 'likes/like_button', work: work
-    = simple_format h work.description
+    .d-flex.justify-content-between.mt-3
+      - if current_user
+        .d-inline-block.my-auto
+          = link_to work.user.name, user_path(work.user)
+      - else
+        .d-inline-block.my-auto
+          a href="#" data-toggle="modal" data-target="#requireLoginModal"
+            = work.user.name
+      .d-inline-block
+        == render 'likes/like_button', work: work
+    .mt-2 = simple_format h work.description
