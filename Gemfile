@@ -65,3 +65,6 @@ gem 'pry-rails'
 gem 'slim-rails'
 
 gem 'carrierwave'
+
+gem 'nested_form_fields'
+gem 'jquery-rails'

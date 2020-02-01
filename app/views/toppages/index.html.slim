@@ -10,13 +10,15 @@ h3 人気の作品
 == render 'works/works', works: @works_popular
 .text-right
   = link_to 'もっと見る', popular_works_path
-h3.mt-4 手数ごとに探す
-= link_to '１手', moves_works_path(1), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
-= link_to '３手', moves_works_path(3), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
-= link_to '５手', moves_works_path(5), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
-= link_to '７手', moves_works_path(7), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
-= link_to '９手', moves_works_path(9), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
-h3.mt-4 新着作品
-== render 'works/works', works: @works_recent
-.text-right
-  = link_to 'もっと見る', recent_works_path
+.my-5
+  h3 手数ごとに探す
+  = link_to '１手', moves_works_path(1), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
+  = link_to '３手', moves_works_path(3), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
+  = link_to '５手', moves_works_path(5), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
+  = link_to '７手', moves_works_path(7), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
+  = link_to '９手', moves_works_path(9), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
+.my-4
+  h3 新着作品
+  == render 'works/works', works: @works_recent
+  .text-right
+    = link_to 'もっと見る', recent_works_path

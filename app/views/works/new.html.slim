@@ -2,16 +2,15 @@
   h2
     | 作品新規作成
 .row
-  .col-sm-10.offset-sm-1
+  .col-lg-10.offset-lg-1
     = form_with(model: @work, local: true) do |f|
       = render 'layouts/error_messages', model: f.object
       .row.my-3
         .col-sm-3
-          = f.label :image
-          = f.label :image, "（必須）"
+          = f.label :image, "初期盤面（必須）"
         .col-sm-9
           = f.file_field :image, id: :work_image
-          p = image_tag (@work.image.url || 'default_icon1.jpg'), id: :work_image_prev, size: "200x200"
+          p = image_tag (@work.image.url || 'default_ban.jpg'), id: :work_image_prev, class: "image-fit", style: "height: 400px;"
       .row.mb-3
         .col-sm-3
           = f.label :title
@@ -19,13 +18,30 @@
           = f.text_field :title, class: 'form-control'
       .row.mb-3
         .col-sm-3
-          = f.label :number_of_moves
-          = f.label :number_of_moves, "（必須）"
+          = f.label :number_of_moves, "手数（必須）"
         .col-sm-9
           .form-inline
-            = f.number_field :number_of_moves, class: 'form-control mr-3'
+            = f.number_field :number_of_moves, class: 'form-control number-of-move mr-3'
             | 手詰
-      
+      .p-3.mb-4.border.shadow-sm.rounded
+        .text-center.mb-3
+          | 詰め手順
+        /Moves:
+        ul
+          = f.nested_fields_for :moves do |ff|
+            li.move
+              .row.border-bottom.mb-2
+                .col-sm-3.offset-sm-1
+                  = ff.hidden_field :number_of_move, class: "move-num", value: 1
+                  span 1手目：
+                .col-sm-8
+                  = ff.select :column, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9]], :prompt => "列"
+                  = ff.select :row, [["一", 1], ["二", 2], ["三", 3], ["四", 4], ["五", 5], ["六", 6], ["七", 7], ["八", 8], ["九", 9]], :prompt => "行"
+                  = ff.text_field :piece, placeholder: "動かす駒", style: "width: 70px"
+                  = ff.text_field :state, placeholder: "状態", style: "width: 70px", 'data-toggle'=>"tooltip", 'data-placement'=>"top", title: "「右・左」「成・不成」などあれば書いてください"
+                  = ff.remove_nested_fields_link '手を削除', class: "float-right"
+          .text-center.mt-4
+            = f.add_nested_fields_link :moves, "手を追加", class: "btn btn-success add-move"
       .row.mb-3
         .col-sm-3
           = f.label :description
@@ -41,5 +57,5 @@
           = f.label :explanation
         .col-sm-9
           = f.text_area :explanation, class: 'form-control', rows: 5, maxlength: 255
-      .text-center
+      .text-center.mb-4
         = f.submit '以上の内容で作成する', class: 'btn btn-primary'

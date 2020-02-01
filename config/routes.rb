@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     end
   end
   
+  #resources :moves, only: [:create, :destroy]
+  
   resources :relationships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
   

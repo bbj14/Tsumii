@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+ 
+.field_with_errors {
+  display: inline;
+}
+
+p {
+  word-wrap: break-word;
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+}
+
+.nav-item li a {
+  display: block;
+  padding-top: 0.25rem;
+  padding-right: 1.5rem;
+  padding-bottom: 0.25rem;
+  padding-left: 1.5rem;
+}
+
+.navbar .dropdown-item {
+  padding: 0!important;
+}

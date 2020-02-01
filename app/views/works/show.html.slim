@@ -14,18 +14,21 @@ h2.text-center.mb-4 作品詳細
   /ヒント以降
   .col-md-6
     details.border.p-3.mb-4
-      summary.mb-3
+      summary
         | ヒントを見る
-      p = @work.hint
+      p.mt-3 = @work.hint
     details.border.p-3
-      summary.mb-3
+      summary
         | 解答を見る
-      .row
-        .col-sm-3
-          p 解答
-          /答え（予定）
-          p.mt-3 kotae
-        .col-sm-9
+      .row.mt-3
+        .col-sm-4
+          p.mb-3 解答
+          - @answer_moves.each do |move|
+            p.mb-1
+              = move.number_of_move.to_s + "： "
+              = move.number_of_move.odd? ? "▲" : "△"
+              = move.column.to_s + move.row.to_s + move.piece + move.state            
+        .col-sm-8
           p 解説
           p.mt-3 = @work.explanation
 

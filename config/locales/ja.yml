@@ -10,6 +10,7 @@ ja:
     models:
       user: ユーザー
       work: 作品
+      move: 一手
     attributes:
       user:
         id: ID

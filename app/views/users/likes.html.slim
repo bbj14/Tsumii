@@ -4,4 +4,4 @@ h2.text-center.mb-4 ユーザー詳細
   .col-md-6.offset-md-3
     == render 'user_card', user: @user
 == render 'user_navs', user: @user
-== render 'works/works', works: @user.liked_works
+== render 'works/works', works: @user.liked_works.order(created_at: :desc)

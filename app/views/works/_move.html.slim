@@ -1,0 +1,10 @@
+li.move
+  .row
+    .col-sm-3.text-center
+      = moves_form.hidden_field :number_of_move, class: "move-num"
+      span
+    .col-sm-9
+      = moves_form.select :column, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9]], :prompt => "列"
+      = moves_form.select :row, [["一", 1], ["二", 2], ["三", 3], ["四", 4], ["五", 5], ["六", 6], ["七", 7], ["八", 8], ["九", 9]], :prompt => "行"
+      = moves_form.text_field :piece, placeholder: "動かす駒", style: "width: 70px"
+      = moves_form.text_field :state, placeholder: "状態", style: "width: 70px", 'data-toggle'=>"tooltip", 'data-placement'=>"top", title: "「右・左」「成・不成」などあれば書いてください"
