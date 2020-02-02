@@ -2,6 +2,8 @@
   .col-4
     - if user.image?
       = image_tag user.image.url, class: "image-fit"
+    - else
+      = image_tag "default_icon1", class: "image-fit"
   .col-8
     .d-flex.justify-content-between
       .d-inline-block.my-auto

@@ -31,5 +31,7 @@ module Tsumeshogi
     config.generators.system_tests = nil
     
     config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
+    
+    config.time_zone = 'Tokyo'
   end
 end

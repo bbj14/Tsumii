@@ -1,6 +1,6 @@
 class Work < ApplicationRecord
   belongs_to :user
-  has_many :moves, inverse_of: :work
+  has_many :moves, inverse_of: :work, dependent: :destroy
   accepts_nested_attributes_for :moves, allow_destroy: true
   
   validates :title, length: { maximum: 50 }

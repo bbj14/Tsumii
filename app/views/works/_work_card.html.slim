@@ -3,15 +3,21 @@
 .media
   - if work.user.image?
     .pt-2.pr-3 = image_tag work.user.image.url, size: "80x80", class: "image-fit"
+  - else
+    .pt-2.pr-3 = image_tag "default_icon1.jpg", size: "80x80", class: "image-fit"
   .media-body
-    .d-flex.justify-content-between.mt-3
+    .d-inline-block.mt-3
       - if current_user
-        .d-inline-block.my-auto
-          = link_to work.user.name, user_path(work.user)
+        = link_to work.user.name, user_path(work.user)
       - else
-        .d-inline-block.my-auto
-          a href="#" data-toggle="modal" data-target="#requireLoginModal"
-            = work.user.name
+        a href="#" data-toggle="modal" data-target="#requireLoginModal"
+          = work.user.name
+    .d-inline-block.mt-2.float-right
+      = link_to moves_works_path(work.number_of_moves) do
+        .btn.btn-info.btn-sm.rounded-pill.mr-2 = work.number_of_moves.to_s + "手"
       .d-inline-block
         == render 'likes/like_button', work: work
-    .mt-2 = simple_format h work.description
+    .mt-2 = work.title
+    small
+      = distance_of_time_in_words_to_now(work.created_at)
+      | 前

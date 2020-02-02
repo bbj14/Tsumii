@@ -3,19 +3,19 @@
     - if current_user.like?(work)
       = form_with(model: current_user.likes.find_by(work_id: work.id), method: :delete) do |f|
         = hidden_field_tag :work_id, work.id
-        = button_tag type: "submit", class: "btn btn-dark" do
+        = button_tag type: "submit", class: "btn btn-dark btn-sm" do
           i.fas.fa-heart style="color: red;"
           small.ml-1
             = work.users_liked_by.count
     - else
       = form_with(model: current_user.likes.build) do |f|
         = hidden_field_tag :work_id, work.id
-        = button_tag type: "submit", class: "btn btn-dark" do
+        = button_tag type: "submit", class: "btn btn-dark btn-sm" do
           i.fas.fa-heart style="color: white;"
           small.ml-1
             = work.users_liked_by.count
 - else
-  a.btn.btn-dark data-toggle="modal" data-target="#requireLoginModal"
+  a.btn.btn-dark.btn-sm data-toggle="modal" data-target="#requireLoginModal"
     i.fas.fa-heart style="color: white;"
     small.text-white.ml-1
       = work.users_liked_by.count

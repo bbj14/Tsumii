@@ -5,31 +5,35 @@ h2.text-center.mb-4 作品詳細
   .col-md-6
     == render 'users/user_card', user: @work.user
     .my-4
-      p.text-center = "#{@work.number_of_moves}手詰"
       = image_tag @work.image.url, class: "image-fit"
-    p
+    div
       | 作成日時：
-      = @work.created_at
-    p = @work.description
+      = @work.created_at.strftime("%Y/%m/%d %H:%M ")
+      .d-inline-block.float-right
+        = link_to moves_works_path(@work.number_of_moves) do
+          .btn.btn-info.btn-sm.rounded-pill.mr-2 = @work.number_of_moves.to_s + "手"
+        .d-inline-block
+          == render 'likes/like_button', work: @work
+    p.mt-3 = @work.description
   /ヒント以降
   .col-md-6
-    details.border.p-3.mb-4
+    details.border.p-3.mb-4.bg-white
       summary
         | ヒントを見る
       p.mt-3 = @work.hint
-    details.border.p-3
+    details.border.p-3.mb-4.bg-white
       summary
         | 解答を見る
       .row.mt-3
         .col-sm-4
           p.mb-3 解答
           - @answer_moves.each do |move|
-            p.mb-1
-              = move.number_of_move.to_s + "： "
-              = move.number_of_move.odd? ? "▲" : "△"
-              = move.column.to_s + move.row.to_s + move.piece + move.state            
+            p.mb-1 = move          
         .col-sm-8
           p 解説
           p.mt-3 = @work.explanation
-
-/コメント（予定）
+    .mb-4
+      - if @work.user == current_user
+        = link_to "作品を編集", edit_work_path(@work), class: "btn btn-success"
+        = link_to "作品を削除", @work, method: :delete, class: "btn btn-danger ml-3", data: {confirm: "本当に削除しますか？"}
+    /コメント（予定）
