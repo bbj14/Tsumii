@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, except: [:new, :create]
   
+  include UserActions
+  
   def index
     #@users = User.order(id: :desc).page(params[:page]).per(25)
   end
@@ -8,23 +10,6 @@ class UsersController < ApplicationController
   def show
     set_user
     #redirect_to mypage_url if @user == curennt_user
-    count(@user)
-  end
-  
-  def followings
-    set_user
-    @followings = @user.followings.page(params[:page])
-    count(@user)
-  end
-  
-  def followers
-    set_user
-    @followers = @user.followers.page(params[:page])
-    count(@user)
-  end
-  
-  def likes
-    set_user
     count(@user)
   end
 
@@ -61,6 +46,15 @@ class UsersController < ApplicationController
   end
   
   def destroy
+    @user = 
+    @user.destroy!
+    #session[:user_id] = nil
+    if current_user.admin
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:success] = "退会しました"
+      redirect_to root_url
+    end
   end
   
   private

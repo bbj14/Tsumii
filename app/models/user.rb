@@ -6,6 +6,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :biography, length: { maximum: 255 }
   has_secure_password
+  acts_as_paranoid
   
   mount_uploader :image, ImagesUploader
   

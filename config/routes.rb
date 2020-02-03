@@ -15,6 +15,16 @@ Rails.application.routes.draw do
   end
   get 'signup', to: 'users#new'
   
+  resource :mypage, only: [:show, :edit] do
+    collection do
+      get :likes
+      get :followings
+      get :followers
+      get :solved
+      get :solve_later
+    end
+  end
+  
   resources :works do
     collection do
       get :popular
