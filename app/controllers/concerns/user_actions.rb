@@ -1,18 +1,19 @@
 module UserActions
   def followings
-    set_user
-    @followings = @user.followings.page(params[:page])
-    count(@user)
+    @followings = @user.followings.order(created_at: :desc).page(params[:page])
   end
   
   def followers
-    set_user
-    @followers = @user.followers.page(params[:page])
-    count(@user)
+    @followers = @user.followers.order(created_at: :desc).page(params[:page])
   end
   
   def likes
-    set_user
-    count(@user)
+    @likes = @user.liked_works.order(created_at: :desc).page(params[:page])
+  end
+  
+  private
+  
+  def set_user
+    raise NotImplementedError
   end
 end

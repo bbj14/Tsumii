@@ -1,0 +1,23 @@
+h2.text-center マイページ
+.text-right
+  = link_to "プロフィールを編集する", edit_mypage_path
+.row
+  .col-md-6.offset-md-3
+    == render 'users/user_card', user: user
+nav.nav.nav-pills.nav-justified.my-4
+  li.nav-item.border
+    = link_to mypage_path, class: "nav-link #{'active' if current_page?(mypage_path)}" do
+      | 投稿作品
+      span.badge.badge-secondary.ml-2 = @count_works
+  li.nav-item.border
+    = link_to followings_mypage_path, class: "nav-link #{'active' if current_page?(followings_mypage_path)}" do
+      | フォロー
+      span.badge.badge-secondary.ml-2 = @count_followings
+  li.nav-item.border
+    = link_to followers_mypage_path, class: "nav-link #{'active' if current_page?(followers_mypage_path)}" do
+      | フォロワー
+      span.badge.badge-secondary.ml-2 = @count_followers
+  li.nav-item.border
+    = link_to likes_mypage_path, class: "nav-link #{'active' if current_page?(likes_mypage_path)}" do
+      | いいね
+      span.badge.badge-secondary.ml-2 = @count_likes

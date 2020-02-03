@@ -1,16 +1,20 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, except: [:new, :create]
+  before_action :set_user, except: [:index, :new, :create]
+  before_action ->{
+    count(@user)
+  }, only: [:show, :followings, :followers, :likes]
   
   include UserActions
   
   def index
+    # for amdin
     #@users = User.order(id: :desc).page(params[:page]).per(25)
   end
 
   def show
-    set_user
-    #redirect_to mypage_url if @user == curennt_user
-    count(@user)
+    redirect_to mypage_url if @user == current_user
+    @works = @user.works.order(created_at: :desc)
   end
 
   def new
@@ -29,32 +33,21 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
-  def edit
-    @user = current_user
-  end
   
   def update
-    set_user
-    if @user.update(user_params)
+    if @user == current_user && @user.update(user_params)
       flash[:success] = "プロフィールを更新しました"
-      redirect_to edit_user_path(@user)
+      redirect_to edit_mypage_path
     else
       flash[:danger] = "プロフィールは更新されませんでした"
-      render :edit
+      render 'mypages/edit'
     end
   end
   
   def destroy
-    @user = 
-    @user.destroy!
-    #session[:user_id] = nil
-    if current_user.admin
-      redirect_back(fallback_location: root_path)
-    else
-      flash[:success] = "退会しました"
-      redirect_to root_url
-    end
+    @user.destroy! if @user == current_user
+    flash[:success] = "退会しました"
+    redirect_to root_url
   end
   
   private

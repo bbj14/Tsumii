@@ -1,17 +1,21 @@
+h2.text-center.mb-4 ユーザー詳細
+.row
+  .col-md-6.offset-md-3
+    == render 'user_card', user: user
 nav.nav.nav-pills.nav-justified.my-4
   li.nav-item.border
-    a href="#{user_path(user)}" class="nav-link #{'active' if current_page?(user_path(user))}"
-      | 作品一覧
+    = link_to user, class: "nav-link #{'active' if current_page?(user_path(user))}" do
+      | 投稿作品
       span.badge.badge-secondary.ml-2 = @count_works
   li.nav-item.border
-    a href="#{followings_user_path(user)}" class="nav-link #{'active' if current_page?(followings_user_path(user))}"
+    = link_to followings_user_path(user), class: "nav-link #{'active' if current_page?(followings_user_path(user))}" do
       | フォロー
       span.badge.badge-secondary.ml-2 = @count_followings
   li.nav-item.border
-    a href="#{followers_user_path(user)}" class="nav-link #{'active' if current_page?(followers_user_path(user))}"
+    = link_to followers_user_path(user), class: "nav-link #{'active' if current_page?(followers_user_path(user))}" do
       | フォロワー
       span.badge.badge-secondary.ml-2 = @count_followers
   li.nav-item.border
-    a href="#{likes_user_path(user)}" class="nav-link #{'active' if current_page?(likes_user_path(user))}"
+    = link_to likes_user_path(user), class: "nav-link #{'active' if current_page?(likes_user_path(user))}" do
       | いいね
       span.badge.badge-secondary.ml-2 = @count_likes

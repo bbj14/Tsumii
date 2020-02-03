@@ -7,7 +7,7 @@
       a data-toggle="modal" data-target="#requireLoginModal"
         u.small ユーザー登録するとできること
 h3 人気の作品
-== render 'works/works', works: @works_popular
+== render 'works/work_cards', works: @works_popular
 .text-right
   = link_to 'もっと見る', popular_works_path
 .my-5
@@ -19,6 +19,6 @@ h3 人気の作品
   = link_to '９手', moves_works_path(9), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
 .my-4
   h3 新着作品
-  == render 'works/works', works: @works_recent
+  == render 'works/work_cards', works: @works_recent
   .text-right
     = link_to 'もっと見る', recent_works_path

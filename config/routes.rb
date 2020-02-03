@@ -6,15 +6,17 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
-  resources :users do
+  get 'signup', to: 'users#new'
+  resources :users, except: :edit do
     member do
       get :likes
       get :followings
       get :followers
     end
   end
-  get 'signup', to: 'users#new'
   
+  
+  get 'mypage', to: 'mypages#show'
   resource :mypage, only: [:show, :edit] do
     collection do
       get :likes
