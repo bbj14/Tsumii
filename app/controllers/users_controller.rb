@@ -8,8 +8,8 @@ class UsersController < ApplicationController
   include UserActions
   
   def index
-    # for amdin
-    #@users = User.order(id: :desc).page(params[:page]).per(25)
+    require_user_admin
+    @users = User.all.page(params[:page])
   end
 
   def show
@@ -45,9 +45,14 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    @user.destroy! if @user == current_user
-    flash[:success] = "退会しました"
-    redirect_to root_url
+    if current_user.admin?
+      @user.destroy!
+      redirect_back(fallback_location: root_url)
+    elsif @user == current_user
+      @user.destroy!
+      flash[:success] = "退会しました"
+      redirect_to root_url
+    end
   end
   
   private

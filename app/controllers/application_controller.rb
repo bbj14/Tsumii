@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def require_user_admin
+    unless current_user.admin
+      render 'public/404.html'
+    end
+  end
+  
   def count(user)
     @count_works = user.works.count
     @count_followings = user.followings.count

@@ -26,8 +26,8 @@ class WorksController < ApplicationController
   end
   
   def moves
-    @works = Work.where(number_of_moves: params[:number_of_moves])
     @moves = params[:number_of_moves]
+    @works = Work.where(number_of_moves: @moves)
   end
   
   def timeline

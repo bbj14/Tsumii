@@ -1,2 +1,27 @@
-h1 Users#index
-p Find me in app/views/users/index.html.slim
+h3.text-center.mb-3 ユーザー一覧
+- if @users.any?
+  table.table.table-striped
+    thead
+      th id
+      th name
+      th image
+      th email
+      th works
+      th admin
+      th 
+    tbody
+      - @users.each do |user|
+        tr 
+          td.align-middle = user.id
+          td.align-middle = link_to user.name, user
+          td.align-middle
+            - if user.image?
+              = image_tag user.image.url, size: "50x50"
+          td.align-middle = user.email
+          td.align-middle = user.works.count
+          td.align-middle = user.admin
+          td.align-middle
+            - unless user.admin?
+              = link_to 'ユーザー削除', user, method: :delete, data: {confirm: "Sure?"}, class: "btn btn-danger btn-sm"
+  = paginate @users
+  = page_entries_info @users
