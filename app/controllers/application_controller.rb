@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   
   def require_user_admin
     unless current_user.admin
-      render 'public/404.html'
+      redirect_to root_url
     end
   end
   

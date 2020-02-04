@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :works do
+  resources :works, except: :index do
     collection do
       get :popular
       get :recent
