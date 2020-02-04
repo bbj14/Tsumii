@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_03_084327) do
+ActiveRecord::Schema.define(version: 2020_02_04_043308) do
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -57,6 +57,17 @@ ActiveRecord::Schema.define(version: 2020_02_03_084327) do
     t.boolean "admin", default: false
   end
 
+  create_table "work_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "work_id", null: false
+    t.integer "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "work_id"], name: "index_work_statuses_on_user_id_and_work_id", unique: true
+    t.index ["user_id"], name: "index_work_statuses_on_user_id"
+    t.index ["work_id"], name: "index_work_statuses_on_work_id"
+  end
+
   create_table "works", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
@@ -75,5 +86,7 @@ ActiveRecord::Schema.define(version: 2020_02_03_084327) do
   add_foreign_key "moves", "works"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
+  add_foreign_key "work_statuses", "users"
+  add_foreign_key "work_statuses", "works"
   add_foreign_key "works", "users"
 end

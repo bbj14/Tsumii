@@ -4,11 +4,17 @@ h2.text-center.mb-4 作品詳細
   /プロフィールと盤面
   .col-md-6
     == render 'users/user_card', user: @work.user
-    .my-4
+    
+    .mt-3.text-center
+      h5 = @work.title
+    .my-2
       = image_tag @work.image.url, class: "image-fit"
     div
+      .d-flex.justify-content-end.mb-3
+        == render 'work_statuses/status_buttons', work: @work, status: @status
       | 作成日時：
       = @work.created_at.strftime("%Y/%m/%d %H:%M ")
+    
       .d-inline-block.float-right
         = link_to moves_works_path(@work.number_of_moves) do
           .btn.btn-info.btn-sm.rounded-pill.mr-2 = @work.number_of_moves.to_s + "手"

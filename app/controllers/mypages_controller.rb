@@ -14,9 +14,11 @@ class MypagesController < ApplicationController
   end
 
   def solved
+    @works = @user.solved_works
   end
 
   def solve_later
+    @works = @user.solve_later_works
   end
   
   private

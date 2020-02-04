@@ -1,0 +1,45 @@
+- if current_user  
+  div id="status-box-#{work.id}"
+    .d-inline-block.mr-2
+      - if status == "solved"
+        = form_with(model: current_user.work_statuses.find_by(work_id: work.id), method: :delete) do |f|
+          = hidden_field_tag :work_id, work.id
+          = hidden_field_tag :status, "solved"
+          = button_tag type: "submit", class: "btn btn-dark btn-sm" do
+            i.far.fa-check-square.fa-lg
+            span.ml-2
+              | 解答済
+      - else
+        = form_with(model: current_user.work_statuses.find_or_initialize_by(work_id: work.id)) do |f|
+          = hidden_field_tag :work_id, work.id
+          = hidden_field_tag :status, "solved"
+          = button_tag type: "submit", class: "btn btn-dark btn-sm" do
+            i.far.fa-square.fa-lg
+            span.ml-2
+              | 解答済
+    .d-inline-block
+      - if status == "solve_later"
+        = form_with(model: current_user.work_statuses.find_by(work_id: work.id), method: :delete) do |f|
+          = hidden_field_tag :work_id, work.id
+          = hidden_field_tag :status, "solve_later"
+          = button_tag type: "submit", class: "btn btn-dark btn-sm" do
+            i.far.fa-check-square.fa-lg
+            span.ml-2
+              | あとで解く
+      - else
+        = form_with(model: current_user.work_statuses.find_or_initialize_by(work_id: work.id)) do |f|
+          = hidden_field_tag :work_id, work.id
+          = hidden_field_tag :status, "solve_later"
+          = button_tag type: "submit", class: "btn btn-dark btn-sm" do
+            i.far.fa-square.fa-lg
+            span.ml-2
+              | あとで解く
+- else
+  a.btn.btn-dark.btn-sm.mr-2 data-toggle="modal" data-target="#requireLoginModal"
+    i.far.fa-square.fa-lg.text-white
+    span.ml-2.text-white
+      | 解答済
+  a.btn.btn-dark.btn-sm data-toggle="modal" data-target="#requireLoginModal"
+    i.far.fa-square.fa-lg.text-white
+    span.ml-2.text-white
+      | あとで解く

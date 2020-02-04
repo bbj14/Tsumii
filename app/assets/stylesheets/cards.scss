@@ -1,0 +1,22 @@
+.follow-info a{
+  color: #502828!important;
+}
+
+.square-field.border {
+  position: relative;
+  
+  .status-show {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 15%;
+    height: 15%;
+    background-color: #a0ff94a1;
+    
+    i {
+      color: #006511;
+    }
+  }
+}

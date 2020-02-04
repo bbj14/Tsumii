@@ -8,14 +8,6 @@ nav.nav.nav-pills.nav-justified.my-4
       | 投稿作品
       span.badge.badge-secondary.ml-2 = @count_works
   li.nav-item.border
-    = link_to followings_user_path(user), class: "nav-link #{'active' if current_page?(followings_user_path(user))}" do
-      | フォロー
-      span.badge.badge-secondary.ml-2 = @count_followings
-  li.nav-item.border
-    = link_to followers_user_path(user), class: "nav-link #{'active' if current_page?(followers_user_path(user))}" do
-      | フォロワー
-      span.badge.badge-secondary.ml-2 = @count_followers
-  li.nav-item.border
     = link_to likes_user_path(user), class: "nav-link #{'active' if current_page?(likes_user_path(user))}" do
       | いいね
       span.badge.badge-secondary.ml-2 = @count_likes

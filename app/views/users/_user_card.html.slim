@@ -7,8 +7,17 @@
   .col-8
     .d-flex.justify-content-between
       .d-inline-block.my-auto
-        = link_to user.name, user_path(user)
+        b = link_to user.name, user_path(user)
       .d-inline-block
         = render 'relationships/follow_button', user: user
+    .mt-2.follow-info
+      = link_to (user==current_user ? followings_mypage_path : followings_user_path(user)) do
+        small.mr-3
+          b = user.followings.count
+          | フォロー
+      = link_to (user==current_user ? followers_mypage_path : followers_user_path(user)) do
+        small
+          b = user.followers.count
+          | フォロワー
     .mt-2 
       = simple_format h user.biography

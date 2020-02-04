@@ -15,6 +15,12 @@ class WorksController < ApplicationController
       previous_move = move
       teban + sashite
     end
+    
+    if current_user
+      @status = current_user.work_statuses.find_by(work_id: @work.id)&.status
+    else
+      @status = nil
+    end
   end
   
   def popular
