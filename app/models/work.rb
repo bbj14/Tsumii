@@ -9,7 +9,7 @@ class Work < ApplicationRecord
   validates :description, length: { maximum: 255 }
   validates :hint, length: { maximum: 255 }
   validates :explanation, length: { maximum: 255 }
-  
+
   mount_uploader :image, ImagesUploader
   
   has_many :likes, dependent: :destroy
@@ -26,5 +26,4 @@ class Work < ApplicationRecord
   def status(user)
     self.work_statuses.find_by(user_id: user.id)&.status
   end
-  
 end

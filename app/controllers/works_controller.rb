@@ -51,6 +51,7 @@ class WorksController < ApplicationController
   
   def create
     @work = current_user.works.build(work_params)
+    @work.number_of_moves = work_params[:moves_attributes].to_h.size
     if @work.save
       flash[:success] = '作品を投稿しました。'
       redirect_to current_user
@@ -66,6 +67,7 @@ class WorksController < ApplicationController
   
   def update
     @work = current_user.works.find(params[:id])
+    @work.number_of_moves = work_params[:moves_attributes].to_h.size
     if @work.update(work_params)
       flash[:success] = "作品を更新しました"
       redirect_to @work
@@ -85,6 +87,6 @@ class WorksController < ApplicationController
   private
 
   def work_params
-    params.require(:work).permit(:image, :title, :number_of_moves, :description, :hint, :explanation, moves_attributes: [:number_of_move, :column, :row, :piece, :state, :_destroy, :id])
+    params.require(:work).permit(:image, :title, :description, :hint, :explanation, moves_attributes: [:number_of_move, :column, :row, :piece, :state, :_destroy, :id])
   end
 end

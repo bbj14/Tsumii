@@ -13,7 +13,7 @@
           = f.label :title
         .col-sm-9
           = f.text_field :title, class: 'form-control', maxlength: 50, placeholder: "50文字以内で入力してください"
-      .row.mb-3
+      /.row.mb-3
         .col-sm-3
           = f.label :number_of_moves, "手数（必須）"
         .col-sm-9
@@ -32,9 +32,9 @@
                   = ff.hidden_field :number_of_move, class: "move-num", value: 1
                   span 1手目：
                 .col-sm-8
-                  = ff.select :column, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9]], :prompt => "列"
-                  = ff.select :row, [["一", 1], ["二", 2], ["三", 3], ["四", 4], ["五", 5], ["六", 6], ["七", 7], ["八", 8], ["九", 9]], :prompt => "行"
-                  = ff.text_field :piece, placeholder: "動かす駒", style: "width: 70px"
+                  = ff.select :column, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9]]
+                  = ff.select :row, [["一", 1], ["二", 2], ["三", 3], ["四", 4], ["五", 5], ["六", 6], ["七", 7], ["八", 8], ["九", 9]]
+                  = ff.select :piece, [["玉", "玉"], ["飛", "飛"], ["角", "角"], ["金", "金"], ["銀", "銀"], ["桂", "桂"], ["香", "香"], ["歩", "歩"], ["龍", "龍"], ["馬", "馬"], ["成銀", "成銀"], ["成桂", "成桂"], ["成香", "成香"], ["と", "と"], ]
                   = ff.text_field :state, placeholder: "状態", style: "width: 70px", 'data-toggle'=>"tooltip", 'data-placement'=>"top", title: "「右・左」「成・不成」などあれば書いてください"
                   = ff.remove_nested_fields_link '手を削除', class: "float-right"
           .text-center.mt-4
