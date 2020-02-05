@@ -42,4 +42,5 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :work_statuses, only: [:create, :update, :destroy]
+  resources :comments, only: [:create, :destroy]
 end

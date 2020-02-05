@@ -8,10 +8,7 @@
         i.fas.fa-clock.fa-lg
   = link_to image_tag(work.image.url, class: "image-fit"), work
 .media
-  - if work.user.image?
-    .pt-2.pr-3 = image_tag work.user.image.url, size: "80x80", class: "image-fit"
-  - else
-    .pt-2.pr-3 = image_tag "default_icon1.jpg", size: "80x80", class: "image-fit"
+  .pt-2.pr-3 = user_image(work.user, 80)
   .media-body
     .d-inline-block.mt-3
       - if current_user
@@ -25,6 +22,6 @@
       .d-inline-block
         == render 'likes/like_button', work: work
     .mt-2 = work.title
-    small
+    small.text-muted
       = distance_of_time_in_words_to_now(work.created_at)
       | 前

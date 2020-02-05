@@ -12,3 +12,14 @@
         = f.password_field :password, class: 'form-control'
       = f.submit 'ログイン', class: 'btn btn-primary btn-block'
     .mt-2 = link_to 'ユーザー登録がまだの方はこちら', signup_path
+    
+    .mt-5.p-3.border.rounded.bg-white
+      h5
+        | ユーザー登録すると以下の機能がご利用になれます
+      ul
+        li 作品の投稿
+        li 作品へのいいね
+        li 他ユーザーのフォロー
+        li タイムライン（フォロー中のユーザーの作品一覧）
+        li 作品へのコメント
+        li 作品へのチェック機能（解答済・あとで解く）

@@ -3,6 +3,7 @@ class WorksController < ApplicationController
   
   def show
     @work = Work.find(params[:id])
+    
     moves = @work.moves.order(:number_of_move)
     previous_move = nil
     @answer_moves = moves.map do |move|
@@ -21,6 +22,9 @@ class WorksController < ApplicationController
     else
       @status = nil
     end
+    
+    @comment = Comment.new
+    @comments = @work.comments.order(created_at: :desc)
   end
   
   def popular

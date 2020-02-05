@@ -15,10 +15,7 @@ h2.text-center
         .col-sm-3
           = f.label :image
         .col-sm-9
-          - if @user.image?
-            = image_tag @user.image.url, id: :user_image_prev, size: "200x200", class: "image-fit"
-          - else
-            = image_tag "default_icon1", id: :user_image_prev, size: "200x200", class: "image-fit"
+          = user_image(@user, 200, :user_image_prev)
           = f.file_field :image, id: :user_image, class: "ml-4"
       .row.mb-3
         .col-sm-3

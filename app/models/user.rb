@@ -22,6 +22,8 @@ class User < ApplicationRecord
   
   has_many :work_statuses, dependent: :destroy
   
+  has_many :comments, dependent: :destroy
+  
   #relationships
   def follow(other_user)
     unless self == other_user
@@ -77,4 +79,5 @@ class User < ApplicationRecord
   def solve_later_works
     Work.joins(:work_statuses).includes(:work_statuses).where(work_statuses: { status: "solve_later", user_id: self.id }).merge(WorkStatus.order(updated_at: :desc))
   end
+  
 end

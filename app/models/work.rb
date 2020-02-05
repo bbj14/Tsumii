@@ -17,6 +17,8 @@ class Work < ApplicationRecord
   
   has_many :work_statuses, dependent: :destroy
   
+  has_many :comments, dependent: :destroy
+  
   def self.order_by_likes
     Work.find(Like.group(:work_id).order('count(work_id) desc').pluck(:work_id))
   end
@@ -24,4 +26,5 @@ class Work < ApplicationRecord
   def status(user)
     self.work_statuses.find_by(user_id: user.id)&.status
   end
+  
 end
