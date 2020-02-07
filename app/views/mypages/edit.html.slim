@@ -17,6 +17,11 @@ h2.text-center
         .col-sm-9
           = user_image(@user, 200, :user_image_prev)
           = f.file_field :image, id: :user_image, class: "ml-4"
+          - if @user.image?
+            p.mt-2
+              = f.check_box :remove_image
+              = f.label :remove_image, "写真を削除する"
+          = f.hidden_field :image_cache
       .row.mb-3
         .col-sm-3
           = f.label :email

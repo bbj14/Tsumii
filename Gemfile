@@ -70,3 +70,5 @@ gem 'nested_form_fields'
 gem 'jquery-rails'
 
 gem "paranoia", "~> 2.2"
+
+gem 'fog-aws'
