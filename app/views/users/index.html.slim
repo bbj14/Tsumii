@@ -13,7 +13,7 @@ h3.text-center.mb-3 ユーザー一覧
       - @users.each do |user|
         tr 
           td.align-middle = user.id
-          td.align-middle = link_to user.name, user
+          td.align-middle = link_to user.name.truncate(15), user
           td.align-middle
             - if user.image?
               = image_tag user.image.url, size: "50x50"

@@ -6,8 +6,10 @@
   }
 }
 
-.nav-pills .nav-link {
-  background-color: white;
+.nav-pills {
+  .nav-link {
+    background-color: white;
+  }
 }
 
 .nav-link.active, .show>.nav-link {
@@ -20,4 +22,14 @@
   padding-right: 1.5rem;
   padding-bottom: 0.25rem;
   padding-left: 1.5rem;
+}
+
+.to-green {
+  background-color: #022d0a!important;
+  transition: background-color 0.5s linear;
+}
+
+.to-none {
+  background-color: transparent!important;
+  transition: background-color 0.5s linear;
 }

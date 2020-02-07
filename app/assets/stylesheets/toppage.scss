@@ -1,12 +1,16 @@
 .fluid-box {
   width: 100vw;
-  height: 50vh;
+  min-height: 50vh;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   background:url(toppage_image.jpg) center no-repeat;
   background-size: cover;
-  padding: 40px;
+  padding: 40px 0px;
+  margin-top: -70px;
+  
+  display: flex;
+  align-items: center;
 }
 
 .fluid-box::after {
@@ -23,6 +27,9 @@
   color: white;
   position: relative;
   z-index: 1;
+  
+  height: 80%;
+  margin-top: 20px;
   
   h1 {
     font-weight: bold;

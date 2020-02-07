@@ -13,8 +13,9 @@ nav.nav.nav-pills.nav-justified.my-4
     a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
       | 手数
     .dropdown-menu
-      = link_to "１手詰", moves_works_path(1), class: "dropdown-item"
-      = link_to "３手詰", moves_works_path(3), class: "dropdown-item"
-      = link_to "５手詰", moves_works_path(5), class: "dropdown-item"
-      = link_to "７手詰", moves_works_path(7), class: "dropdown-item"
-      = link_to "９手詰", moves_works_path(9), class: "dropdown-item"
+      = moves_drop_link(1)
+      = moves_drop_link(3)
+      = moves_drop_link(5)
+      = moves_drop_link(7)
+      = moves_drop_link(9)
+      = moves_drop_link(11)

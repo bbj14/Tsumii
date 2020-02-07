@@ -3,18 +3,58 @@
     = user_fit_image(user)
   .col-8
     .d-flex.justify-content-between
-      .d-inline-block.my-auto
-        b = link_to user.name, user_path(user)
-      .d-inline-block
-        = render 'relationships/follow_button', user: user
+      b = link_to user.name, user_path(user)
+      = render 'relationships/follow_button', user: user
     .mt-2.follow-info
-      = link_to (user==current_user ? followings_mypage_path : followings_user_path(user)) do
+      a href="#" data-toggle="modal" data-target="#{current_user ? "#showFollowingsModal" : "#requireLoginModal"}"
         small.mr-3
           b = user.followings.count
           | フォロー
-      = link_to (user==current_user ? followers_mypage_path : followers_user_path(user)) do
+      a href="#" data-toggle="modal" data-target="#{current_user ? "#showFollowersModal" : "#requireLoginModal"}"
         small
           b = user.followers.count
           | フォロワー
     .mt-2 
       = simple_format h user.biography
+      
+.modal.fade#showFollowingsModal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        h5.modal-title.font-weight-bold#exampleModalLabel
+          | #{user.name} のフォロー
+      .modal-body
+        - user.followings.each do |user|
+          .row.mb-3
+            .col-3
+              = user_fit_image(user)
+            .col-9
+              .d-flex.justify-content-between
+                b = link_to user.name.truncate(15), user_path(user)
+                = render 'relationships/follow_button', user: user
+              .mt-2 
+                = simple_format h user.biography
+      .modal-footer
+        button type="button" class="btn btn-sm btn-secondary mx-auto" data-dismiss="modal"
+          | 閉じる
+          
+.modal.fade#showFollowersModal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        h5.modal-title.font-weight-bold#exampleModalLabel
+          | #{user.name} のフォロワー
+      .modal-body
+        - user.followers.each do |user|
+          .row.mb-3
+            .col-3
+              = user_fit_image(user)
+            .col-9
+              .d-flex.justify-content-between
+                b = link_to user.name.truncate(15), user_path(user)
+                = render 'relationships/follow_button', user: user
+              .mt-2 
+                = simple_format h user.biography
+      .modal-footer
+        button type="button" class="btn btn-sm btn-secondary mx-auto" data-dismiss="modal"
+          | 閉じる

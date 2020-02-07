@@ -9,13 +9,13 @@ h2.text-center.mb-4 作品詳細
       h5.font-weight-bold = @work.title
     .my-2
       = image_tag @work.image.url, class: "image-fit"
-    div
-      .d-flex.justify-content-end.mb-3
-        == render 'work_statuses/status_buttons', work: @work, status: @status
-      | 作成日時：
-      = @work.created_at.strftime("%Y/%m/%d %H:%M ")
-    
-      .d-inline-block.float-right
+    .d-flex.justify-content-end.mb-2
+      == render 'work_statuses/status_buttons', work: @work, status: @status
+    .d-flex.justify-content-between
+      div
+        | 作成日時：
+        = @work.created_at.strftime("%Y/%m/%d %H:%M ")
+      .d-inline-block
         = link_to moves_works_path(@work.number_of_moves) do
           .btn.btn-info.btn-sm.rounded-pill.mr-2 = @work.number_of_moves.to_s + "手"
         .d-inline-block
@@ -23,10 +23,11 @@ h2.text-center.mb-4 作品詳細
     p.mt-3 = @work.description
   /ヒント以降
   .col-lg-6
-    details.border.p-3.mb-4.bg-white
-      summary
-        | ヒントを見る
-      p.mt-3 = @work.hint
+    - if @work.hint.present?
+      details.border.p-3.mb-4.bg-white
+        summary
+          | ヒントを見る
+        p.mt-3 = @work.hint
     details.border.p-3.mb-4.bg-white
       summary
         | 解答を見る
@@ -42,7 +43,6 @@ h2.text-center.mb-4 作品詳細
       - if @work.user == current_user
         = link_to "作品を編集", edit_work_path(@work), class: "btn btn-success"
         = link_to "作品を削除", @work, method: :delete, class: "btn btn-danger ml-3", data: {confirm: "本当に削除しますか？"}
-    /コメント（予定）
     .p-4.border.rounded.bg-white
       p
         | コメント
@@ -51,7 +51,7 @@ h2.text-center.mb-4 作品詳細
         .mb-2
           .d-inline.mr-3
             = user_image(current_user, 50)
-          = current_user.name
+          = current_user.name.truncate(15)
       = form_with(model: @comment, local: true) do |f|
         = f.hidden_field :work_id, :value => @work.id
         = f.text_area :comment, class: 'form-control', rows: 5, maxlength: 255, placeholder: "255文字以内で入力してください"
@@ -63,7 +63,7 @@ h2.text-center.mb-4 作品詳細
             div
               .d-inline.mr-3
                 = user_image(comment.user, 50)
-              = link_to comment.user.name, comment.user
+              = link_to comment.user.name.truncate(15), comment.user
             = comment.created_at.strftime("%Y/%m/%d %H:%M ")
           .mt-2
             p = comment.comment

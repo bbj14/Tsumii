@@ -3,6 +3,3 @@ h2.text-center.mb-4 作品一覧
 h3.text-center
   | #{@moves}手詰
 == render 'work_cards', works: @works
-- if @works.blank?
-  h4.mt-4
-    | #{@moves}手詰の作品は投稿されていません。

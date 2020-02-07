@@ -1,24 +1,26 @@
 - unless logged_in?
-  .fluid-box.mt-n4.mb-3
+  .fluid-box.mb-3
     .toppage-content.container.text-center
-      h1 詰将棋投稿サイト(仮)
-      h3.mt-3 詰将棋を作る。解く。
-      p.my-4 = link_to "ユーザー登録（無料）", signup_path, class: "btn btn-primary"
+      h1 詰将棋(仮)
+      h3.my-4 詰将棋を作る。解く。
+      .mb-2
+        = link_to "ユーザー登録（無料）", signup_path, class: "btn btn-primary"
       a data-toggle="modal" data-target="#requireLoginModal"
         u.small ユーザー登録するとできること
-h3 人気の作品
+h3.mt-4 人気の作品
 == render 'works/work_cards', works: @works_popular
 .text-right
-  = link_to 'もっと見る', popular_works_path
+  b = link_to 'もっと見る', popular_works_path
 .my-5
-  h3 手数ごとに探す
-  = link_to '１手', moves_works_path(1), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
-  = link_to '３手', moves_works_path(3), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
-  = link_to '５手', moves_works_path(5), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
-  = link_to '７手', moves_works_path(7), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
-  = link_to '９手', moves_works_path(9), class: "btn btn-dark btn-lg rounded-pill mr-3", style: "width: 100px;"
+  h3.mb-4 手数ごとに探す
+  = moves_button(1)
+  = moves_button(3)
+  = moves_button(5)
+  = moves_button(7)
+  = moves_button(9)
+  = moves_button(11)
 .my-4
   h3 新着作品
   == render 'works/work_cards', works: @works_recent
   .text-right
-    = link_to 'もっと見る', recent_works_path
+    b = link_to 'もっと見る', recent_works_path

@@ -4,7 +4,8 @@
       = render 'layouts/error_messages', model: f.object
       .row.my-3
         .col-sm-3
-          = f.label :image, "初期盤面（必須）"
+          = f.label :image
+          p（必須・5MB以下）
         .col-sm-9
           = f.file_field :image, id: :work_image
           p = image_tag (work.image.url || 'default_ban.jpg'), id: :work_image_prev, class: "image-fit", style: "height: 400px;"
@@ -35,7 +36,10 @@
                   = ff.select :column, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9]]
                   = ff.select :row, [["一", 1], ["二", 2], ["三", 3], ["四", 4], ["五", 5], ["六", 6], ["七", 7], ["八", 8], ["九", 9]]
                   = ff.select :piece, [["玉", "玉"], ["飛", "飛"], ["角", "角"], ["金", "金"], ["銀", "銀"], ["桂", "桂"], ["香", "香"], ["歩", "歩"], ["龍", "龍"], ["馬", "馬"], ["成銀", "成銀"], ["成桂", "成桂"], ["成香", "成香"], ["と", "と"], ]
-                  = ff.text_field :state, placeholder: "状態", style: "width: 70px", 'data-toggle'=>"tooltip", 'data-placement'=>"top", title: "「右・左」「成・不成」などあれば書いてください"
+                  = ff.select :state1, [["", nil], ["右", "右"], ["左", "左"], ["(直)", "直"]]
+                  = ff.select :state2, [["", nil], ["上", "上"], ["寄", "寄"], ["引", "引"]]
+                  = ff.select :state3, [["", nil], ["成", "成"], ["不成", "不成"], ["打", "打"]]
+                  /= ff.text_field :state, placeholder: "状態", style: "width: 70px", 'data-toggle'=>"tooltip", 'data-placement'=>"top", title: "「右・左」「成・不成」などあれば書いてください"
                   = ff.remove_nested_fields_link '手を削除', class: "float-right"
           .text-center.mt-4
             = f.add_nested_fields_link :moves, "手を追加", class: "btn btn-success add-move"

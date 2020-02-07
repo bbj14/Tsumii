@@ -10,8 +10,6 @@ Rails.application.routes.draw do
   resources :users, except: :edit do
     member do
       get :likes
-      get :followings
-      get :followers
     end
   end
   
@@ -20,8 +18,6 @@ Rails.application.routes.draw do
   resource :mypage, only: [:show, :edit] do
     collection do
       get :likes
-      get :followings
-      get :followers
       get :solved
       get :solve_later
     end

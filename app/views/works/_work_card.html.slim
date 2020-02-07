@@ -7,20 +7,20 @@
       .status-show
         i.fas.fa-clock.fa-lg
   = link_to image_tag(work.image.url, class: "image-fit"), work
+.d-flex.justify-content-end.mt-2
+  = link_to moves_works_path(work.number_of_moves) do
+    .btn.btn-info.btn-sm.rounded-pill.mr-2 = work.number_of_moves.to_s + "手"
+  .d-inline-block
+    == render 'likes/like_button', work: work
 .media
-  .pt-2.pr-3 = user_image(work.user, 80)
+  .pr-3 = user_image(work.user, 80)
   .media-body
-    .d-inline-block.mt-3
+    .mt-2.d-inline-block
       - if current_user
-        = link_to work.user.name, user_path(work.user)
+        = link_to work.user.name.truncate(15), user_path(work.user)
       - else
         a href="#" data-toggle="modal" data-target="#requireLoginModal"
           = work.user.name
-    .d-inline-block.mt-2.float-right
-      = link_to moves_works_path(work.number_of_moves) do
-        .btn.btn-info.btn-sm.rounded-pill.mr-2 = work.number_of_moves.to_s + "手"
-      .d-inline-block
-        == render 'likes/like_button', work: work
     .mt-2 = work.title
     small.text-muted
       = distance_of_time_in_words_to_now(work.created_at)

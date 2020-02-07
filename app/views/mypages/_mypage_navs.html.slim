@@ -1,10 +1,10 @@
 h2.text-center マイページ
-.text-right
+.text-right.mb-3
   = link_to "プロフィールを編集する", edit_mypage_path
 .row
   .col-md-6.offset-md-3
     == render 'users/user_card', user: user
-nav.nav.nav-pills.nav-justified.my-4
+nav.nav.nav-pills.nav-fill.my-4
   li.nav-item.border
     = link_to mypage_path, class: "nav-link #{'active' if current_page?(mypage_path)}" do
       | 投稿作品

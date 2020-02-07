@@ -3,3 +3,5 @@
     - works.each do |work|
       .col-lg-4.col-sm-6.my-3
         == render 'works/work_card', work: work
+  - else
+    p まだ作品はありません

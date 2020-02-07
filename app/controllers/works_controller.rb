@@ -87,6 +87,6 @@ class WorksController < ApplicationController
   private
 
   def work_params
-    params.require(:work).permit(:image, :title, :description, :hint, :explanation, moves_attributes: [:number_of_move, :column, :row, :piece, :state, :_destroy, :id])
+    params.require(:work).permit(:image, :title, :description, :hint, :explanation, moves_attributes: [:number_of_move, :column, :row, :piece, :state1, :state2, :state3, :_destroy, :id])
   end
 end
