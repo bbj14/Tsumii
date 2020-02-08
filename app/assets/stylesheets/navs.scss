@@ -1,8 +1,13 @@
 .navbar {
-  background-color: #022d0a;
+  background-color: #442600;
   
   .dropdown-item {
     padding: 0!important;
+    
+    a {
+      display: block;
+      padding: 0.25rem 1.5rem;
+    }
   }
 }
 
@@ -10,22 +15,14 @@
   .nav-link {
     background-color: white;
   }
+  
+  .nav-link.active, .show>.nav-link {
+    background-color: #026b02!important;
+  }
 }
 
-.nav-link.active, .show>.nav-link {
-  background-color: #026b02!important;
-}
-
-.nav-item li a {
-  display: block;
-  padding-top: 0.25rem;
-  padding-right: 1.5rem;
-  padding-bottom: 0.25rem;
-  padding-left: 1.5rem;
-}
-
-.to-green {
-  background-color: #022d0a!important;
+.to-brown {
+  background-color: #442600!important;
   transition: background-color 0.5s linear;
 }
 

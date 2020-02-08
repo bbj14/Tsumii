@@ -1,9 +1,9 @@
 - unless logged_in?
   .fluid-box.mb-3
     .toppage-content.container.text-center
-      h1 詰将棋(仮)
-      h3.my-4 詰将棋を作る。解く。
-      .mb-2
+      = image_tag 'tsumii.png', class: "logo"
+      h3.mt-4.mb-5 詰将棋を作る。解く。
+      .mb-3
         = link_to "ユーザー登録（無料）", signup_path, class: "btn btn-primary"
       a data-toggle="modal" data-target="#requireLoginModal"
         u.small ユーザー登録するとできること
