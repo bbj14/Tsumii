@@ -10,7 +10,7 @@ nav.nav.nav-pills.nav-fill.my-4
       a href="#{timeline_works_path}" class="nav-link #{'active' if current_page?(timeline_works_path)}"
         | タイムライン
   li.nav-item.dropdown.border
-    a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+    a href="#" class="nav-link dropdown-toggle #{'active' if current_page?(moves_works_path(params[:number_of_moves] ||= 1))}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
       | 手数
     .dropdown-menu
       = moves_drop_link(1)
