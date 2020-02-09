@@ -1,5 +1,5 @@
 - unless logged_in?
-  .fluid-box.mb-3
+  .fluid-box.mb-5
     .toppage-content.container.text-center
       = image_tag 'tsumii.png', class: "logo"
       h3.mt-4.mb-5 詰将棋を作る。解く。
@@ -7,7 +7,7 @@
         = link_to "ユーザー登録（無料）", signup_path, class: "btn btn-primary"
       a data-toggle="modal" data-target="#requireLoginModal"
         u.small ユーザー登録するとできること
-h3.mt-4 人気の作品
+h3 人気の作品
 == render 'works/work_cards', works: @works_popular
 .text-right
   b = link_to 'もっと見る', popular_works_path

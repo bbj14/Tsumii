@@ -1,5 +1,14 @@
 .row
   .col-lg-10.offset-lg-1
+    details.border.p-3.mt-2.mb-4.bg-white
+      summary
+        | 作成方法
+      ol.mt-2
+        li 詰将棋初期盤面の画像ファイルを選択してください。※画像はShogiGUI等の外部アプリケーションを使用して作成してください。形式は問いません。
+        li 詰め手順をセレクトボックスから選択して入力してください。右・左、成・不成などはあれば選択してください。
+        li タイトル、作品の説明、ヒント、答えの解説を入力してください。（入力は任意です。）
+        li 「この内容で作成する」ボタンをクリックしてください。作品が投稿されます。
+      
     = form_with(model: work, local: true) do |f|
       = render 'layouts/error_messages', model: f.object
       .row.my-3
@@ -22,7 +31,7 @@
           .form-inline
             = f.number_field :number_of_moves, class: 'form-control number-of-move mr-3'
             | 手詰
-      .p-3.mb-4.border.shadow-sm.rounded
+      .p-3.mb-4.border.shadow-sm.bg-white.rounded
         .text-center.mb-3
           | 詰め手順
         /Moves:
