@@ -4,7 +4,8 @@
   .col-8
     .d-flex.justify-content-between
       b = link_to user.name, user_path(user)
-      = render 'relationships/follow_button', user: user
+      div id="follow-btn-#{user.id}"
+        = render 'relationships/follow_button', user: user
     .mt-2.follow-info
       a href="#" data-toggle="modal" data-target="#{current_user ? "#showFollowingsModal" : "#requireLoginModal"}"
         small.mr-3
@@ -12,7 +13,7 @@
           | フォロー
       a href="#" data-toggle="modal" data-target="#{current_user ? "#showFollowersModal" : "#requireLoginModal"}"
         small
-          b = user.followers.count
+          b.follower-count = user.followers.count
           | フォロワー
     .mt-2 
       = simple_format h user.biography
@@ -31,7 +32,8 @@
             .col-9
               .d-flex.justify-content-between
                 b = link_to user.name.truncate(15), user_path(user)
-                = render 'relationships/follow_button', user: user
+                div id="follow-btn-#{user.id}"
+                  = render 'relationships/follow_button', user: user
               .mt-2 
                 = simple_format h user.biography
       .modal-footer
@@ -52,7 +54,8 @@
             .col-9
               .d-flex.justify-content-between
                 b = link_to user.name.truncate(15), user_path(user)
-                = render 'relationships/follow_button', user: user
+                div id="follow-btn-#{user.id}"
+                  = render 'relationships/follow_button', user: user
               .mt-2 
                 = simple_format h user.biography
       .modal-footer
