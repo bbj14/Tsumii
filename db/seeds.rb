@@ -15,8 +15,10 @@
 end
 =end
 
+=begin
 shimo = User.find(6)
 users = User.where("id > ?", 7)
 users.each do |user|
   user.follow(shimo)
 end
+=end

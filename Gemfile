@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -75,4 +76,11 @@ gem 'fog-aws'
 
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'
+end
+
+group :test do
+  gem 'capybara', '>= 2.15'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+  gem 'rspec-rails', '~> 3.7'
 end
