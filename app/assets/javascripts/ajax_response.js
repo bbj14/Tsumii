@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load', function() {
   
+  /*
   $('[id^="follow-btn"]').on("ajax:success", function(event, data, status, xhr) {
     let state = $(event.currentTarget).find('.btn').val();
     
@@ -18,6 +19,7 @@ $(document).on('turbolinks:load', function() {
     
     $(event.currentTarget).html(data);
   });
+  */
   
   $('[class^="like-btn"]').on("ajax:success", function(event, data, status, xhr) {
     $("." + event.currentTarget.className).html(data);

@@ -1,0 +1,18 @@
+- if user.followings.count > 0
+  a href="#" data-toggle="modal" data-target="#{current_user ? "#showFollowingsModal" : "#requireLoginModal"}"
+    small.mr-3
+      b#follow-count = user.followings.count
+      | フォロー
+- else
+  small.mr-3
+    b#follow-count = user.followings.count
+    | フォロー
+- if user.followers.count > 0
+  a href="#" data-toggle="modal" data-target="#{current_user ? "#showFollowersModal" : "#requireLoginModal"}"
+    small
+      b#follower-count = user.followers.count
+      | フォロワー
+- else
+  small
+    b#follower-count = user.followers.count
+    | フォロワー
