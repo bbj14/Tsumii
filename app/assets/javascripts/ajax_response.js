@@ -23,6 +23,20 @@ $(document).on('turbolinks:load', function() {
   
   $('[class^="like-btn"]').on("ajax:success", function(event, data, status, xhr) {
     $("." + event.currentTarget.className).html(data);
+    
+    if ( $('h2').text().indexOf("マイページ") >= 0 ) {
+      const i = $(event.currentTarget).find('i')
+      if ( i.is("[style= color: red;]") ) {
+        let count = $('.likes-counter').text();
+        count++;
+        $('.likes-counter').text(count);
+      }
+      if ( i.is("[style= color: white;]") ) {
+        let count = $('.likes-counter').text();
+        count--;
+        $('.likes-counter').text(count);
+      }
+    }
   });
   
 });
