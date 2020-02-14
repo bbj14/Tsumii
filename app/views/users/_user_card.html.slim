@@ -1,57 +1,36 @@
-.user-card
-  .row
-    .col-4
-      = user_fit_image(user)
-    .col-8
-      .d-flex.justify-content-between
-        b = link_to user.name, user_path(user)
-        div class="follow-btn-#{user.id}"
-          = render 'relationships/follow_button', user: user, user_of_page: user
-      .mt-2#follow-info
-        == render 'users/follow_info', user: user
-      .mt-2 
-        = simple_format h user.biography
-        
-  .modal.fade#showFollowingsModal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
-    .modal-dialog role="document"
-      .modal-content
-        .modal-header
-          h5.modal-title.font-weight-bold#exampleModalLabel
-            | #{user.name} のフォロー
-        .modal-body
-          - user.followings.each do |follow|
-            .row.mb-3
-              .col-3
-                = user_fit_image(follow)
-              .col-9
-                .d-flex.justify-content-between
-                  b = link_to follow.name.truncate(15), user_path(follow)
-                  div class="follow-btn-#{follow.id}"
-                    = render 'relationships/follow_button', user: follow, user_of_page: user
-                .mt-2 
-                  = simple_format h follow.biography
-        .modal-footer
-          button type="button" class="btn btn-sm btn-secondary mx-auto" data-dismiss="modal"
-            | 閉じる
-            
-  .modal.fade#showFollowersModal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
-    .modal-dialog role="document"
-      .modal-content
-        .modal-header
-          h5.modal-title.font-weight-bold#exampleModalLabel
-            | #{user.name} のフォロワー
-        .modal-body
-          - user.followers.each do |follower|
-            .row.mb-3
-              .col-3
-                = user_fit_image(follower)
-              .col-9
-                .d-flex.justify-content-between
-                  b = link_to follower.name.truncate(15), user_path(follower)
-                  div class="follow-btn-#{follower.id}"
-                    = render 'relationships/follow_button', user: follower, user_of_page: user
-                .mt-2 
-                  = simple_format h follower.biography
-        .modal-footer
-          button type="button" class="btn btn-sm btn-secondary mx-auto" data-dismiss="modal"
-            | 閉じる
+.row
+  .col-4
+    = user_fit_image(user)
+  .col-8
+    .d-flex.justify-content-between
+      b = link_to user.name, user_path(user)
+      div class="follow-btn-#{user.id}"
+        = render 'relationships/follow_button', user: user, user_of_page: user
+    .mt-2#follow-info
+      == render 'users/follow_info', user: user
+    .mt-2 
+      = simple_format h user.biography
+      
+.modal.fade#showFollowingsModal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        h5.modal-title.font-weight-bold#exampleModalLabel
+          | #{user.name} のフォロー
+      .modal-body#follow-modal-body
+        == render 'users/modal_data', users: user.followings, user_of_page: user
+      .modal-footer
+        button type="button" class="btn btn-sm btn-secondary mx-auto" data-dismiss="modal"
+          | 閉じる
+          
+.modal.fade#showFollowersModal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        h5.modal-title.font-weight-bold#exampleModalLabel
+          | #{user.name} のフォロワー
+      .modal-body#follower-modal-body
+        == render 'users/modal_data', users: user.followers, user_of_page: user
+      .modal-footer
+        button type="button" class="btn btn-sm btn-secondary mx-auto" data-dismiss="modal"
+          | 閉じる

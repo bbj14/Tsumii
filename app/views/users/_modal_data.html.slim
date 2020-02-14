@@ -1,0 +1,11 @@
+- users.each do |user|
+  .row.mb-3
+    .col-3
+      = user_fit_image(user)
+    .col-9
+      .d-flex.justify-content-between
+        b = link_to user.name.truncate(15), user_path(user)
+        div class="follow-btn-#{user.id}"
+          = render 'relationships/follow_button', user: user, user_of_page: user_of_page
+      .mt-2 
+        = simple_format h user.biography
