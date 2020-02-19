@@ -74,12 +74,16 @@ gem "paranoia", "~> 2.2"
 
 gem 'fog-aws'
 
-group :production do
-  gem 'pg', '>= 0.18', '< 2.0'
-end
-
 group :test do
   gem 'capybara'
   gem 'webdrivers'
   gem 'rspec-rails', '~> 3.7'
 end
+
+group :development, :test do
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rbenv', require: false
+  gem 'capistrano3-puma', require: false
+ end
