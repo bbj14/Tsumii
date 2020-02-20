@@ -52,7 +52,7 @@ set :puma_init_active_record, true
 
 # rbenv の設定
 set :rbenv_type, :user
-set :rbenv_path, '/home/maru/.rbenv'
+set :rbenv_path, '~/.rbenv'
 set :rbenv_ruby, File.read('.ruby-version').strip
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w[rake gem bundle ruby rails puma pumactl]
