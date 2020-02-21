@@ -16,9 +16,7 @@ jobs: # ステップの集合
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_HOST: 127.0.0.1
           MYSQL_DATABASE: tsumeshogi_test
-          MYSQL_ROOT_PASSWORD: ''
-          MYSQL_USER: dbuser
-          MYSQL_PASSWORD: dbuser
+          MYSQL_USER: root
           MYSQL_ROOT_HOST: '%'
     steps: # 実行可能コマンドの集合
       - checkout # ソースコードを作業ディレクトリにチェックアウトする特別なステップ
@@ -47,7 +45,7 @@ jobs: # ステップの集合
           key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-            
+
       - run:
           name: DB を待機
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
