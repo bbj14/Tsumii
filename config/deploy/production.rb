@@ -7,7 +7,7 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-server '10.0.0.247', user: 'bbj14', roles: %w{app db web}
+server '34.200.188.104', user: 'bbj14', roles: %w{app db web}
 
 # role-based syntax
 # ==================
@@ -44,7 +44,7 @@ server '10.0.0.247', user: 'bbj14', roles: %w{app db web}
 set :ssh_options, {
   keys: [File.expand_path('~/.ssh/tsumii_key_rsa')],
   forward_agent: true,
-  auth_methods: %w(password)
+  auth_methods: %w(publickey)
 }
 
 # The server-based syntax can be used to override options:

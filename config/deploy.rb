@@ -52,8 +52,8 @@ set :puma_init_active_record, true
 
 # rbenv の設定
 set :rbenv_type, :user
-set :rbenv_path, '~/.rbenv'
-set :rbenv_ruby, File.read('.ruby-version').strip
+set :rbenv_custom_path, '~/.rbenv'
+#set :rbenv_ruby, File.read('.ruby-version').strip
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w[rake gem bundle ruby rails puma pumactl]
 
@@ -101,7 +101,7 @@ namespace :deploy do
     on roles(:app) do
       # 403 Forbidden対策
       # https://qiita.com/hatorijobs/items/8b57f9a89c3bfb442755
-      execute 'chmod 701 /var/www'
+      #execute 'chmod 701 /var/www'
       before 'deploy:restart', 'puma:start'
       invoke 'deploy'
     end
