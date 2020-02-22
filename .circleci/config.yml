@@ -86,3 +86,6 @@ jobs: # ステップの集合
       - store_test_results: # テストサマリー (https://circleci.com/docs/ja/2.0/collect-test-data/) に表示するテスト結果をアップロードします
           path: test_results
       # デプロイコンフィグの例については https://circleci.com/docs/ja/2.0/deployment-integrations/ を参照してください
+      - add_ssh_keys:
+          fingerprints:
+            - "ac:98:42:bd:4a:2c:2f:84:22:ee:d3:71:a1:20:34:14"
