@@ -8,9 +8,10 @@ jobs: # ステップの集合
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
-          PGHOST: 127.0.0.1
-          PGUSER: circleci-demo-ruby
           RAILS_ENV: test
+          DB_USER: root
+          DB_PASSWORD: ''
+          DB_HOST: '127.0.0.1'
       - image: circleci/mysql:5.7.29 # データベースイメージ
         environment: # データベースの環境変数
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
@@ -48,7 +49,7 @@ jobs: # ステップの集合
 
       - run:
           name: DB を待機
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+          command: dockerize -wait tcp://127.0.0.1:5432 -timeout 1m
 
       - run:
           name: データベースをセットアップ
