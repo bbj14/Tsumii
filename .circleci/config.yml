@@ -75,3 +75,7 @@ jobs: # ステップの集合
       - add_ssh_keys:
           fingerprints:
             - "ac:98:42:bd:4a:2c:2f:84:22:ee:d3:71:a1:20:34:14"
+
+      - deploy:
+          name: Capistrano deploy
+          command: bundle exec cap production deploy
