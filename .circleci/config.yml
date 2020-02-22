@@ -9,15 +9,14 @@ jobs: # ステップの集合
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
-          DB_USER: root
-          DB_PASSWORD: ''
-          DB_HOST: '127.0.0.1'
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_USERNAME: 'root'
+          MYSQL_PASSWORD: ''
+          MYSQL_PORT: 3306
       - image: circleci/mysql:5.7.29 # データベースイメージ
         environment: # データベースの環境変数
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_HOST: 127.0.0.1
           MYSQL_DATABASE: tsumeshogi_test
-          MYSQL_USER: root
           MYSQL_ROOT_HOST: '%'
     steps: # 実行可能コマンドの集合
       - checkout # ソースコードを作業ディレクトリにチェックアウトする特別なステップ
@@ -47,9 +46,13 @@ jobs: # ステップの集合
           paths:
             - vendor/bundle
 
+      # Database setup
+      - run: rm ./config/database.yml
+      - run: mv ./config/database.yml.ci ./config/database.yml
+
       - run:
           name: DB を待機
-          command: dockerize -wait tcp://127.0.0.1:5432 -timeout 1m
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
 
       - run:
           name: データベースをセットアップ
