@@ -78,6 +78,7 @@ group :test do
   gem 'capybara'
   gem 'webdrivers'
   gem 'rspec-rails', '~> 3.7'
+  gem "rspec_junit_formatter"
 end
 
 group :development, :test do
