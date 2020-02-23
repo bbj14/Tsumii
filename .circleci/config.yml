@@ -1,4 +1,4 @@
-mysqversion: 2 # CircleCI 2.0 を使用します
+version: 2 # CircleCI 2.0 を使用します
 jobs: # ステップの集合
   build: # Workflows を使用しない実行では、エントリポイントとして `build` ジョブが必要
     parallelism: 3 # このジョブのインスタンスを 3つ並列実行します
@@ -18,6 +18,9 @@ jobs: # ステップの集合
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: tsumeshogi_test
           MYSQL_ROOT_HOST: '%'
+      - image: circleci/python:3.6-jessie
+      - image: buildpack-deps:trusty
+
     steps: # 実行可能コマンドの集合
       - checkout # ソースコードを作業ディレクトリにチェックアウトする特別なステップ
 
@@ -72,6 +75,17 @@ jobs: # ステップの集合
       - store_test_results: # テストサマリー (https://circleci.com/docs/ja/2.0/collect-test-data/) に表示するテスト結果をアップロードします
           path: test_results
       # デプロイコンフィグの例については https://circleci.com/docs/ja/2.0/deployment-integrations/ を参照してください
+
+      - run: sudo apt-get update && sudo apt-get install -y python-pip && sudo pip install awscli
+      - run:
+          name: "authorize-security-group-ingress"
+          command: |
+            IP=`curl -s ifconfig.me`
+            echo "#!/bin/bash" > ./sg.sh
+            echo "aws configure set region us-east-1" >> ./sg.sh
+            echo "aws ec2 authorize-security-group-ingress --group-id sg-053de4970083c8f74 --protocol tcp --port 22 --cidr ${IP}/32" >> ./sg.sh
+            bash ./sg.sh
+
       - add_ssh_keys:
           fingerprints:
             - "e4:7c:8e:55:11:38:55:47:fb:bd:f5:84:f5:fe:4b:bb"
@@ -83,17 +97,13 @@ jobs: # ステップの集合
               exit 0
             fi
 
-            cat <<EOF >> $HOME/.ssh/config
-              User bbj14
-              ForwardAgent yes
-            EOF
-
-            eval $(ssh-agent)
-            ssh-add ~/.ssh/id_rsa
-            ssh-add ~/.ssh/id_rsa_e47c8e5511385547fbbdf584f5fe4bbb
-
-            ls ~/.ssh
-            cat $HOME/.ssh/config
-            ssh-add -l
-
             bundle exec cap production deploy
+
+      - run:
+          name: "revoke-security-group-ingress"
+          command: |
+            IP=`curl -s ifconfig.me`
+            echo "#!/bin/bash" > ./sg.sh
+            echo "aws configure set region us-east-1" >> ./sg.sh
+            echo "aws ec2 revoke-security-group-ingress --group-id sg-053de4970083c8f74 --protocol tcp --port 22 --cidr ${IP}/32" >> ./sg.sh
+            bash ./sg.sh
