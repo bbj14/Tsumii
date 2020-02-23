@@ -69,9 +69,9 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
 )
 # シンボリックリンク貼る系（file）
 set :linked_files, fetch(:linked_files, []).push(
-  'config/database.yml',
+  #'config/database.yml',
   'config/master.key',
-  '.env'
+  #'.env'
 )
 
 # pumaの追加タスク
@@ -126,7 +126,7 @@ namespace :deploy do
   end
 
   before :starting,     :check_revision
-  before :check,        'setup:config'
+  #before :check,        'setup:config'
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :migrate,      :seed

@@ -74,8 +74,26 @@ jobs: # ステップの集合
       # デプロイコンフィグの例については https://circleci.com/docs/ja/2.0/deployment-integrations/ を参照してください
       - add_ssh_keys:
           fingerprints:
-            - "ac:98:42:bd:4a:2c:2f:84:22:ee:d3:71:a1:20:34:14"
+            - "e4:7c:8e:55:11:38:55:47:fb:bd:f5:84:f5:fe:4b:bb"
 
       - deploy:
           name: Capistrano deploy
-          command: bundle exec cap production deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "master" ]; then
+              exit 0
+            fi
+
+            cat <<EOF >> $HOME/.ssh/config
+              User bbj14
+              ForwardAgent yes
+            EOF
+
+            eval $(ssh-agent)
+            ssh-add ~/.ssh/id_rsa
+            ssh-add ~/.ssh/id_rsa_e47c8e5511385547fbbdf584f5fe4bbb
+
+            ls ~/.ssh
+            cat $HOME/.ssh/config
+            ssh-add -l
+
+            bundle exec cap production deploy
