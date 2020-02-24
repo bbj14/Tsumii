@@ -42,7 +42,7 @@ server '34.200.188.104', user: 'bbj14', roles: %w{app db web}
 # Global options
 # --------------
 set :ssh_options, {
-  keys: [File.expand_path('~/.ssh/tsumii_key_rsa')],
+  keys: [File.expand_path('~/.ssh/id_rsa_e47c8e5511385547fbbdf584f5fe4bbb')],
   forward_agent: true,
   auth_methods: %w(publickey)
 }
