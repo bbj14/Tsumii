@@ -14,13 +14,12 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: 
+  password: <%= Rails.application.credentials[:mysql_pass] %>
   socket: /var/lib/mysql/mysql.sock
 
 development:
   <<: *default
   database: tsumeshogi_development
-  password: <%= Rails.application.credentials[:mysql_pass] %>
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -29,7 +28,6 @@ development:
 test:
   <<: *default
   database: tsumeshogi_test
-  password: <%= Rails.application.credentials[:mysql_pass] %>
   socket: /var/run/mysqld/mysqld.sock
 
 # As with config/secrets.yml, you never want to store sensitive information,
@@ -53,4 +51,7 @@ test:
 #
 production:
   <<: *default
+  host: <%= Rails.application.credentials.rds[:host] %>
+  username: <%= Rails.application.credentials.rds[:username] %>
+  password: <%= Rails.application.credentials.rds[:password] %>
   database: tsumeshogi_production
