@@ -1,24 +1,29 @@
-# README
+![tsumii](https://user-images.githubusercontent.com/40915287/75146380-4f679a00-573e-11ea-8c69-77e644ee9d55.png)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Tsumiiは、詰将棋（将棋のパズル）を投稿し共有できるサービスです。
 
-Things you may want to cover:
+## アプリURL
+https://tsumii.work
 
-* Ruby version
+## トップページ
 
-* System dependencies
+## 機能
+* ログイン不要の機能
+  * 作品閲覧
 
-* Configuration
+* ログイン必須の機能
+  * 作品投稿
+  * 作品へのいいね
+  * 他ユーザーのフォロー
+  * 作品のチェック機能（解答済、後で解く）
+  * 作品に対するコメント
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用技術
+* フレームワーク：Ruby on Rails
+* 言語
+  * フロントエンド：HTML(Slim), CSS(Bootstrap), javascript(jQuery)
+  * バックエンド：Ruby
+* データベース：MySQL
+* インフラ：AWS（VPC, EC2, RDS, S3(画像保存用), Route53, ACM, ELB, IAM）
+* テスト：Rspec, Capybara, Factorybot
+* CI/CD：CircleCI, Capistrano(CircleCIによるデプロイまで対応)
